@@ -22,7 +22,7 @@ var resource = {
 };
 
 var authServer = {
-	introspectionEndpoint: 'http://localhost:9001/introspect'
+	introspectionEndpoint: 'http://localhost:19001/introspect'
 };
 
 
@@ -68,7 +68,7 @@ app.post("/resource", cors(), getAccessToken, function(req, res){
 	
 });
 
-var server = app.listen(9002, 'localhost', function () {
+var server = app.listen(19002, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

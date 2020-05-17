@@ -27,12 +27,12 @@ var client = {};
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token',
-	registrationEndpoint: 'http://localhost:9001/register'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token',
+	registrationEndpoint: 'http://localhost:19001/register'
 };
 
-var protectedResource = 'http://localhost:9002/resource';
+var protectedResource = 'http://localhost:19002/resource';
 
 var state = null;
 
@@ -193,7 +193,7 @@ var encodeClientCredentials = function(clientId, clientSecret) {
 	return new Buffer(querystring.escape(clientId) + ':' + querystring.escape(clientSecret)).toString('base64');
 };
 
-var server = app.listen(9000, 'localhost', function () {
+var server = app.listen(19000, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('OAuth Client is listening at http://%s:%s', host, port);

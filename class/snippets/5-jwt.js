@@ -5,9 +5,9 @@ var header = {
 };
 
 var payload = {
-	iss: 'http://localhost:9001/',
+	iss: 'http://localhost:19001/',
 	sub: code.user ? code.user.sub : null,
-	aud: 'http://localhost:9002/',
+	aud: 'http://localhost:19002/',
 	iat: Math.floor(Date.now() / 1000),
 	exp: Math.floor(Date.now() / 1000) + (5 * 60),
 	jti: randomstring.generate(8)

@@ -23,11 +23,11 @@ app.set('views', 'files/client');
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token',
-	revocationEndpoint: 'http://localhost:9001/revoke',
-	registrationEndpoint: 'http://localhost:9001/register',
-	userInfoEndpoint: 'http://localhost:9001/userinfo'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token',
+	revocationEndpoint: 'http://localhost:19001/revoke',
+	registrationEndpoint: 'http://localhost:19001/register',
+	userInfoEndpoint: 'http://localhost:19001/userinfo'
 };
 
 var rsaKey = {
@@ -43,16 +43,16 @@ var rsaKey = {
 var client = {
 	"client_id": "oauth-client-1",
 	"client_secret": "oauth-client-secret-1",
-	"redirect_uris": ["http://localhost:9000/callback"],
+	"redirect_uris": ["http://localhost:19000/callback"],
 	"scope": "foo bar"
 };
 
 //var client = {};
 
-var protectedResource = 'http://localhost:9002/resource';
-var wordApi = 'http://localhost:9002/words';
-var produceApi = 'http://localhost:9002/produce';
-var favoritesApi = 'http://localhost:9002/favorites';
+var protectedResource = 'http://localhost:19002/resource';
+var wordApi = 'http://localhost:19002/words';
+var produceApi = 'http://localhost:19002/produce';
+var favoritesApi = 'http://localhost:19002/favorites';
 
 var state = null;
 
@@ -96,8 +96,8 @@ var registerClient = function() {
 	
 	var template = {
 		client_name: 'OAuth in Action Dynamic Test Client',
-		client_uri: 'http://localhost:9000/',
-		redirect_uris: ['http://localhost:9000/callback'],
+		client_uri: 'http://localhost:19000/',
+		redirect_uris: ['http://localhost:19000/callback'],
 		grant_types: ['authorization_code'],
 		response_types: ['code'],
 		token_endpoint_auth_method: 'secret_basic',
@@ -184,7 +184,7 @@ app.get("/callback", function(req, res){
 				var tokenParts = body.id_token.split('.');
 				var payload = JSON.parse(base64url.decode(tokenParts[1]));
 				console.log('Payload', payload);
-				if (payload.iss == 'http://localhost:9001/') {
+				if (payload.iss == 'http://localhost:19001/') {
 					console.log('issuer OK');
 					if ((Array.isArray(payload.aud) && _.contains(payload.aud, client.client_id)) || 
 						payload.aud == client.client_id) {
@@ -530,7 +530,7 @@ var buildUrl = function(base, options, hash) {
 	return url.format(newUrl);
 };
 
-var server = app.listen(9000, 'localhost', function () {
+var server = app.listen(19000, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('OAuth Client is listening at http://%s:%s', host, port);

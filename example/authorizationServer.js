@@ -23,8 +23,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -32,7 +32,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-1",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "foo bar",
 		"logo_uri": "https://images.manning.com/720/960/resize/book/e/14336f9-6493-46dc-938c-11a34c9d20ac/Richer-OAuth2-HI.png",
 		"client_name": "OAuth in Action Exercise Client"
@@ -40,7 +40,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-2",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "bar"
 	},
 	{
@@ -262,9 +262,9 @@ var generateTokens = function (req, res, clientId, user, scope, nonce, generateR
 	var header = { 'typ': 'JWT', 'alg': 'RS256', 'kid': rsaKey.kid};
 
 	var payload = {};
-	payload.iss = 'http://localhost:9001/';
+	payload.iss = 'http://localhost:19001/';
 	payload.sub = user;
-	payload.aud = 'http://localhost:9002/';
+	payload.aud = 'http://localhost:19002/';
 	payload.iat = Math.floor(Date.now() / 1000);
 	payload.exp = Math.floor(Date.now() / 1000) + (5 * 60);
 	payload.jti = randomstring.generate();
@@ -284,7 +284,7 @@ var generateTokens = function (req, res, clientId, user, scope, nonce, generateR
 	var header = { 'typ': 'JWT', 'alg': 'RS256', 'kid': rsaKey.kid};
 	
 	var payload = {};
-	payload.iss = 'http://localhost:9001/';
+	payload.iss = 'http://localhost:19001/';
 	payload.sub = user.sub;
 	payload.aud = clientId;
 	payload.iat = Math.floor(Date.now() / 1000);
@@ -543,7 +543,7 @@ app.post('/introspect', function(req, res) {
 			
 			var introspectionResponse = {};
 			introspectionResponse.active = true;
-			introspectionResponse.iss = 'http://localhost:9001/';
+			introspectionResponse.iss = 'http://localhost:19001/';
 			introspectionResponse.sub = token.user;
 			introspectionResponse.scope = token.scope.join(' ');
 			introspectionResponse.client_id = token.client_id;
@@ -657,7 +657,7 @@ app.post('/register', function (req, res){
 	reg.client_secret_expires_at = 0;
 
 	reg.registration_access_token = randomstring.generate();
-	reg.registration_client_uri = 'http://localhost:9001/register/' + reg.client_id;
+	reg.registration_client_uri = 'http://localhost:19001/register/' + reg.client_id;
 
 	clients.push(reg);
 	
@@ -860,7 +860,7 @@ app.use('/', express.static('files/authorizationServer'));
 // clear the database
 nosql.clear();
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

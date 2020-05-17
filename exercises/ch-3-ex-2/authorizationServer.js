@@ -20,8 +20,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -29,7 +29,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-1",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "foo bar"
 	}
 ];
@@ -255,7 +255,7 @@ nosql.clear();
 // inject our pre-baked refresh token
 nosql.insert({ refresh_token: 'j2r3oj32r23rmasd98uhjrk2o3i', client_id: 'oauth-client-1', scope: 'foo bar' });
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

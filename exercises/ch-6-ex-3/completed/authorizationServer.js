@@ -20,8 +20,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -336,7 +336,7 @@ app.use('/', express.static('files/authorizationServer'));
 // clear the database
 nosql.clear();
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

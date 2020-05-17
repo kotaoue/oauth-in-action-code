@@ -26,14 +26,14 @@ app.set('views', 'files/client');
 var client = {
 	"client_id": "oauth-client-1",
 	"client_secret": "oauth-client-secret-1",
-	"redirect_uris": ["http://localhost:9000/callback"],
+	"redirect_uris": ["http://localhost:19000/callback"],
 	"scope": "foo bar"
 };
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 var rsaKey = {
@@ -44,7 +44,7 @@ var rsaKey = {
   "kid": "authserver"
 };
 
-var protectedResource = 'http://localhost:9002/resource';
+var protectedResource = 'http://localhost:19002/resource';
 
 var state = null;
 
@@ -193,7 +193,7 @@ var encodeClientCredentials = function(clientId, clientSecret) {
 	return new Buffer(querystring.escape(clientId) + ':' + querystring.escape(clientSecret)).toString('base64');
 };
 
-var server = app.listen(9000, 'localhost', function () {
+var server = app.listen(19000, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('OAuth Client is listening at http://%s:%s', host, port);

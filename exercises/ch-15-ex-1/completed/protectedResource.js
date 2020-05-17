@@ -32,7 +32,7 @@ var protectedResource = {
 };
 
 var authServer = {
-	introspectionEndpoint: 'http://localhost:9001/introspect'
+	introspectionEndpoint: 'http://localhost:19001/introspect'
 };
 
 
@@ -85,7 +85,7 @@ var getAccessToken = function(req, res, next) {
 				console.log('Signature is valid');
 				
 				if (!payload.m || payload.m == req.method) {
-					if (!payload.u || payload.u == 'localhost:9002') {
+					if (!payload.u || payload.u == 'localhost:19002') {
 						if (!payload.p || payload.p == req.path) {
 							console.log('All components matched');
 							
@@ -134,7 +134,7 @@ var encodeClientCredentials = function(clientId, clientSecret) {
 	return new Buffer(querystring.escape(clientId) + ':' + querystring.escape(clientSecret)).toString('base64');
 };
 
-var server = app.listen(9002, 'localhost', function () {
+var server = app.listen(19002, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

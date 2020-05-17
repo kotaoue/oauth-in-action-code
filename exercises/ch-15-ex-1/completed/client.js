@@ -21,8 +21,8 @@ app.set('views', 'files/client');
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -30,11 +30,11 @@ var authServer = {
 var client = {
 	"client_id": "oauth-client-1",
 	"client_secret": "oauth-client-secret-1",
-	"redirect_uris": ["http://localhost:9000/callback"],
+	"redirect_uris": ["http://localhost:19000/callback"],
 	"scope": "foo"
 };
 
-var protectedResource = 'http://localhost:9002/resource';
+var protectedResource = 'http://localhost:19002/resource';
 
 var state = null;
 
@@ -139,7 +139,7 @@ app.get('/fetch_resource', function(req, res) {
 	payload.ts = Math.floor(Date.now() / 1000);
 
 	payload.m = 'POST';
-	payload.u = 'localhost:9002';
+	payload.u = 'localhost:19002';
 	payload.p = '/resource';
 
 	var privateKey = jose.KEYUTIL.getKey(key);
@@ -189,7 +189,7 @@ var encodeClientCredentials = function(clientId, clientSecret) {
 
 app.use('/', express.static('files/client'));
 
-var server = app.listen(9000, 'localhost', function () {
+var server = app.listen(19000, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('OAuth Client is listening at http://%s:%s', host, port);

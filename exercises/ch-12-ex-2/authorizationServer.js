@@ -20,8 +20,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -30,7 +30,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-1",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "foo bar"
 	}
 ];
@@ -333,7 +333,7 @@ app.post('/register', function (req, res){
 	reg.client_secret_expires_at = 0;
 
 	reg.registration_access_token = randomstring.generate();
-	reg.registration_client_uri = 'http://localhost:9001/register/' + reg.client_id;
+	reg.registration_client_uri = 'http://localhost:19001/register/' + reg.client_id;
 
 	clients.push(reg);
 	
@@ -450,7 +450,7 @@ app.use('/', express.static('files/authorizationServer'));
 // clear the database
 nosql.clear();
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

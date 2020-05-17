@@ -21,8 +21,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -30,7 +30,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-1",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "foo bar"
 	}
 ];
@@ -248,8 +248,8 @@ app.post('/introspect', function(req, res) {
 			
 			var introspectionResponse = {
 				active: true,
-				iss: 'http://localhost:9001/',
-				aud: 'http://localhost:9002/',
+				iss: 'http://localhost:19001/',
+				aud: 'http://localhost:19002/',
 				sub: token.user ? token.user.sub : undefined,
 				username: token.user ? token.user.preferred_username : undefined,
 				scope: token.scope ? token.scope.join(' ') : undefined,
@@ -310,7 +310,7 @@ var decodeClientCredentials = function(auth) {
 // clear the database
 nosql.clear();
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

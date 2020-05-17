@@ -45,7 +45,7 @@ var protectedResources = {
 };
 
 var authServer = {
-	introspectionEndpoint: 'http://localhost:9001/introspect'
+	introspectionEndpoint: 'http://localhost:19001/introspect'
 };
 
 
@@ -94,7 +94,7 @@ app.get('/words', getAccessToken, requireAccessToken, function(req, res) {
 	if (__.contains(req.access_token.scope, 'read')) {
 		res.json({words: savedWords.join(' '), timestamp: Date.now()});
 	} else {
-		res.set('WWW-Authenticate', 'Bearer realm=localhost:9002, error="insufficient_scope", scope="read"');
+		res.set('WWW-Authenticate', 'Bearer realm=localhost:19002, error="insufficient_scope", scope="read"');
 		res.status(403);
 	}
 });
@@ -106,7 +106,7 @@ app.post('/words', getAccessToken, requireAccessToken, function(req, res) {
 		}
 		res.status(201).end();
 	} else {
-		res.set('WWW-Authenticate', 'Bearer realm=localhost:9002, error="insufficient_scope", scope="write"');
+		res.set('WWW-Authenticate', 'Bearer realm=localhost:19002, error="insufficient_scope", scope="write"');
 		res.status(403);
 	}
 });
@@ -116,7 +116,7 @@ app.delete('/words', getAccessToken, requireAccessToken, function(req, res) {
 		savedWords.pop();
 		res.status(201).end();
 	} else {
-		res.set('WWW-Authenticate', 'Bearer realm=localhost:9002, error="insufficient_scope", scope="delete"');
+		res.set('WWW-Authenticate', 'Bearer realm=localhost:19002, error="insufficient_scope", scope="delete"');
 		res.status(403);
 	}
 });
@@ -171,7 +171,7 @@ app.post("/resource", cors(), getAccessToken, function(req, res){
 	
 });
 
-var server = app.listen(9002, 'localhost', function () {
+var server = app.listen(19002, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

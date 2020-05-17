@@ -23,8 +23,8 @@ app.set('json spaces', 4);
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token'
 };
 
 // client information
@@ -32,7 +32,7 @@ var clients = [
 	{
 		"client_id": "oauth-client-1",
 		"client_secret": "oauth-client-secret-1",
-		"redirect_uris": ["http://localhost:9000/callback"],
+		"redirect_uris": ["http://localhost:19000/callback"],
 		"scope": "openid profile email phone address"
 	}
 ];
@@ -242,7 +242,7 @@ app.post("/token", function(req, res){
 					var header = { 'typ': 'JWT', 'alg': rsaKey.alg, 'kid': rsaKey.kid };
 
 					var ipayload = {
-						iss: 'http://localhost:9001/',
+						iss: 'http://localhost:19001/',
 						sub: code.user.sub,
 						aud: client.client_id,
 						iat: Math.floor(Date.now() / 1000),
@@ -313,7 +313,7 @@ app.use('/', express.static('files/authorizationServer'));
 // clear the database
 nosql.clear();
 
-var server = app.listen(9001, 'localhost', function () {
+var server = app.listen(19001, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

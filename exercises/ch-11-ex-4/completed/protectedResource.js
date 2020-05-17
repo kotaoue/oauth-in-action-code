@@ -30,7 +30,7 @@ var protectedResource = {
 };
 
 var authServer = {
-	introspectionEndpoint: 'http://localhost:9001/introspect'
+	introspectionEndpoint: 'http://localhost:19001/introspect'
 };
 
 
@@ -100,7 +100,7 @@ var encodeClientCredentials = function(clientId, clientSecret) {
 	return new Buffer(querystring.escape(clientId) + ':' + querystring.escape(clientSecret)).toString('base64');
 };
 
-var server = app.listen(9002, 'localhost', function () {
+var server = app.listen(19002, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

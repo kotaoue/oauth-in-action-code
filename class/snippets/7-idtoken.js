@@ -4,7 +4,7 @@ var token_response = { access_token: access_token, token_type: 'Bearer',  scope:
 
 if (__.contains(code.scope, 'openid')) {
 	var ipayload = {
-		iss: 'http://localhost:9001/',
+		iss: 'http://localhost:19001/',
 		sub: code.user.sub,
 		aud: client.client_id,
 		iat: Math.floor(Date.now() / 1000),
@@ -46,7 +46,7 @@ if (body.id_token) {
 		[header.alg])) {
 
 		console.log('Signature validated.');
-		if (payload.iss == 'http://localhost:9001/') {
+		if (payload.iss == 'http://localhost:19001/') {
 			console.log('issuer OK');
 			if ((Array.isArray(payload.aud) && __.contains(payload.aud, client.client_id)) || 
 				payload.aud == client.client_id) {

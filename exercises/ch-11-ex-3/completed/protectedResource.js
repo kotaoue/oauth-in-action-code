@@ -28,7 +28,7 @@ var protectedResources = {
 };
 
 var authServer = {
-	introspectionEndpoint: 'http://localhost:9001/introspect'
+	introspectionEndpoint: 'http://localhost:19001/introspect'
 };
 
 var rsaKey = {
@@ -68,10 +68,10 @@ var getAccessToken = function(req, res, next) {
 	
 		console.log('Signature validated');
 
-		if (payload.iss == 'http://localhost:9001/') {
+		if (payload.iss == 'http://localhost:19001/') {
 			console.log('issuer OK');
-			if ((Array.isArray(payload.aud) && __.contains(payload.aud, 'http://localhost:9002/')) || 
-				payload.aud == 'http://localhost:9002/') {
+			if ((Array.isArray(payload.aud) && __.contains(payload.aud, 'http://localhost:19002/')) || 
+				payload.aud == 'http://localhost:19002/') {
 				console.log('Audience OK');
 			
 				var now = Math.floor(Date.now() / 1000);
@@ -119,7 +119,7 @@ app.post("/resource", cors(), getAccessToken, function(req, res){
 	
 });
 
-var server = app.listen(9002, 'localhost', function () {
+var server = app.listen(19002, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
 

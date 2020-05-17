@@ -18,11 +18,11 @@ app.set('views', 'files/client');
 
 // authorization server information
 var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token',
-	revocationEndpoint: 'http://localhost:9001/revoke',
-	registrationEndpoint: 'http://localhost:9001/register',
-	userInfoEndpoint: 'http://localhost:9001/userinfo'
+	authorizationEndpoint: 'http://localhost:19001/authorize',
+	tokenEndpoint: 'http://localhost:19001/token',
+	revocationEndpoint: 'http://localhost:19001/revoke',
+	registrationEndpoint: 'http://localhost:19001/register',
+	userInfoEndpoint: 'http://localhost:19001/userinfo'
 };
 
 // client information
@@ -30,11 +30,11 @@ var authServer = {
 var client = {
 	"client_id": "oauth-client-1",
 	"client_secret": "oauth-client-secret-1",
-	"redirect_uris": ["http://localhost:9000/callback"],
+	"redirect_uris": ["http://localhost:19000/callback"],
 	"scope": "fruit veggies meats"
 };
 
-var produceApi = 'http://localhost:9002/produce';
+var produceApi = 'http://localhost:19002/produce';
 
 var state = null;
 
@@ -145,7 +145,7 @@ app.get('/produce', function(req, res) {
 
 app.use('/', express.static('files/client'));
 
-var server = app.listen(9000, 'localhost', function () {
+var server = app.listen(19000, 'localhost', function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('OAuth Client is listening at http://%s:%s', host, port);
